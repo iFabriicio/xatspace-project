@@ -1,0 +1,8 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to right, #0af, #05f);
+  color: white;
+  text-align: center;
+}
+header { padding: 20px; }
