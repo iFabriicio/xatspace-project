@@ -1,1 +1,0 @@
-// JS personalizado si luego necesitas efectos adicionales
