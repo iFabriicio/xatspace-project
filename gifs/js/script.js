@@ -1,1 +1,0 @@
-// Scripts específicos para gifs
