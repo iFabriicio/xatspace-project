@@ -1,0 +1,15 @@
+/* Animación para aparecer y desaparecer de manera fluida */
+@keyframes fadeInOut {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+/* Aplicamos al título */
+h2 {
+  animation: fadeInOut 3s ease-in-out infinite;
+}
+
+/* Textos de los botones */
+.menu-item span {
+  animation: fadeInOut 4s ease-in-out infinite;
+}
