@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Fondo animado Xatspace</title>
+  <style>
+    html, body {margin:0; height:100%; overflow:hidden;}
+    #bg-wrap {position:fixed; inset:0; z-index:-1;}
+    canvas {width:100%; height:100%; display:block;}
+    .demo-content {position:relative; z-index:1; color:white; padding:20px; font-family:sans-serif;}
+  </style>
+</head>
+<body>
+  <div id="bg-wrap">
+    <canvas id="bg-canvas"></canvas>
+  </div>
+
+  <div class="demo-content">
+    <h1>Fondo Xatspace animado</h1>
+    <p>Puedes cambiar el módulo con <code>?bgModule=</code> o usar imagen externa con <code>?bgImg=</code>.</p>
+  </div>
+
+  <script type="module">
+    const canvas = document.getElementById("bg-canvas");
+    const ctx = canvas.getContext("2d");
+    let raf = null;
+
+    function resize() {
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = innerWidth * dpr;
+      canvas.height = innerHeight * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    window.addEventListener("resize", resize, { passive: true });
+    resize();
+
+    function getBgModuleFromUrl() {
+      const url = new URL(location.href);
+      const m = url.searchParams.get("bgModule");
+      return m ? decodeURIComponent(m) : null;
+    }
+
+    async function loadModule(url) {
+      if (raf) cancelAnimationFrame(raf);
+      const mod = await import(url);
+      if (typeof mod.init === "function") await mod.init(canvas, { ctx });
+      const frameFn = mod.frame;
+      let last = performance.now();
+      (function loop(now) {
+        const dt = now - last; last = now;
+        if (frameFn) frameFn(dt, { canvas, ctx });
+        raf = requestAnimationFrame(loop);
+      })(last);
+    }
+
+    const moduleUrl = getBgModuleFromUrl() || "./modules/fondo-abstracto.js";
+    loadModule(moduleUrl);
+  </script>
+
+<div class="nav-buttons" style="text-align:center;margin-top:24px;">
+  <a href="../index.html" class="btn-menu">MENÚ PRINCIPAL</a>
+  <a href="../index.html" class="btn-back" style="margin-left:16px;">← Volver Atrás</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Listado de Precios</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to bottom, #1d71f2, #003366);
+      color: white;
+      text-align: center;
+    }
+
+    .contenedor {
+      padding: 40px 20px;
+      padding-bottom: 100px;
+    }
+
+    .titulo {
+      display: inline-block;
+      background: linear-gradient(to bottom, #2b8cff, #0a3d91);
+      padding: 15px 50px;
+      border-radius: 10px;
+      font-size: 26px;
+      font-weight: bold;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+      margin-bottom: 40px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .precios-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .card {
+      background: #002b66;
+      border: 2px solid #00c3ff;
+      border-radius: 12px;
+      padding: 25px;
+      box-shadow: 0 0 15px rgba(0, 195, 255, 0.4);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.04);
+      box-shadow: 0 0 20px rgba(0, 195, 255, 0.7);
+    }
+
+    .card h3 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      background: linear-gradient(90deg, #00f0ff, #00ff85);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 8px rgba(0, 255, 200, 0.4);
+      letter-spacing: 1px;
+    }
+
+    .card ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      text-align: left;
+    }
+
+    .card ul li {
+      font-size: 16px;
+      margin: 10px 0;
+      color: #e0e8ff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: color 0.3s ease, text-shadow 0.3s ease;
+    }
+
+    .card ul li:hover {
+      color: #ffffff;
+      text-shadow: 0 0 8px rgba(0, 200, 255, 0.6);
+    }
+
+    .precio {
+      font-weight: 700;
+      font-size: 17px;
+      background: linear-gradient(90deg, #ffd700, #ffae00);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 10px rgba(255, 200, 0, 0.6);
+      transition: transform 0.2s ease;
+    }
+
+    .precio:hover {
+      transform: scale(1.1);
+    }
+
+    .separador {
+      margin: 40px auto;
+      height: 2px;
+      width: 80%;
+      background: linear-gradient(to right, transparent, #00c3ff, transparent);
+    }
+
+    .volver {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(to bottom, #2b8cff, #0a3d91);
+      color: white;
+      font-weight: bold;
+      padding: 12px 30px;
+      border-radius: 25px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .volver:hover {
+      background: linear-gradient(to bottom, #45aaff, #0c4fb5);
+      transform: translateX(-50%) scale(1.05);
+    }
+  </style>
+
+  <style>
+    #bg-wrap{position:fixed;inset:0;z-index:-1;pointer-events:none;}
+    #bg-canvas{width:100%;height:100%;display:block;}
+    .bg-content{position:relative;z-index:1;}
+  </style>
+
+</head>
+<body>
+<div id="bg-wrap"><canvas id="bg-canvas"></canvas></div>
+<div class="bg-content">
+
+  <div class="contenedor">
+    <div class="titulo">Listado de Precios</div>
+
+    <div class="precios-grid">
+      <div class="card">
+        <h3>🎞 GIFs</h3>
+        <ul>
+          <li>Gif 4D <span class="precio">600 xats</span></li>
+          <li>Gif parpadeos <span class="precio">150 xats</span></li>
+          <li>Gif parpadeos con efectos especiales <span class="precio">300 xats</span></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>🖼 Fondos</h3>
+        <ul>
+          <li>Fondo banner normal <span class="precio">600 xats</span></li>
+          <li>Fondo pcback normal <span class="precio">600 xats</span></li>
+          <li>Fondo pcback GIF <span class="precio">800 xats</span></li>
+          <li>Fondo psty normal <span class="precio">500 xats</span></li>
+          <li>Fondo psty GIF <span class="precio">700 xats</span></li>
+          <li>Fondos completos para sala (ext. + int.) <span class="precio">1400 xats</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="separador"></div>
+
+    <div class="precios-grid">
+      <div class="card">
+        <h3>🔥 Promociones Usuarios</h3>
+        <ul>
+          <li>1 pcback normal + 1 psty normal + gif 4D o 3 parpadeos <span class="precio">1000 xats</span></li>
+          <li>1 pcback GIF + 1 psty GIF + gif 4D o 4 parpadeos <span class="precio">1300 xats</span></li>
+          <li>2 pcback GIF + 2 gif 4D o 6 parpadeos <span class="precio">1400 xats</span></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>🏠 Promociones Salas</h3>
+        <ul>
+          <li>2 packs completos (2 exteriores + 2 interiores) <span class="precio">1600 xats</span></li>
+          <li>4 packs completos (4 exteriores + 4 interiores) <span class="precio">2300 xats</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <a href="../index.html" class="volver">← Volver Atrás</a>
+
+<div class="nav-buttons" style="text-align:center;margin-top:24px;">
+  <a href="../index.html" class="btn-menu">MENÚ PRINCIPAL</a>
+  
+</div>
+
+</div>
+<script type="module" src="../../assets/fondo-loader.js"></script>
+</body>
+</html>
