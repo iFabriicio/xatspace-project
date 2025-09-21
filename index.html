@@ -71,29 +71,32 @@
   </div>
 
   <!-- SCRIPT del fondo animado -->
-  <script type="module">
-    import { init, frame } from "./assets/js/fondo-abstracto.js";
+<!-- SCRIPT del fondo animado -->
+<script type="module">
+  import { init, frame } from "./assets/js/fondo-abstracto.js";
 
-    const canvas = document.getElementById("bg-canvas");
-    const ctx = canvas.getContext("2d");
+  const canvas = document.getElementById("bg-canvas");
+  const ctx = canvas.getContext("2d");
 
-    function resize() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      init(canvas, { ctx });
-    }
-    window.addEventListener("resize", resize);
-    resize();
+  function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  window.addEventListener("resize", resize);
+  resize();
 
-    let last = performance.now();
-    function loop(now) {
-      const dt = (now - last) / 1000;
-      last = now;
-      frame(dt, { canvas, ctx });
-      requestAnimationFrame(loop);
-    }
+  // Iniciar fondo
+  init(canvas, { ctx });
+
+  let last = performance.now();
+  function loop(now) {
+    const dt = (now - last) / 1000;
+    last = now;
+    frame(dt, { canvas, ctx });
     requestAnimationFrame(loop);
-  </script>
+  }
+  requestAnimationFrame(loop);
+</script>
 </body>
 </html>
 
