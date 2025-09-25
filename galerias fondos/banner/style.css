@@ -1,0 +1,256 @@
+/* pcback.css - fondo y botones igual que GIFS 4D; botones abajo igual a la imagen proporcionada */
+
+:root{
+  --accent-top: #3fb0ff;
+  --accent-bottom: #0060b2;
+  --dark-1: #06293f;
+  --dark-2: #031725;
+}
+
+/* Fondo similar al apartado GIFS 4D */
+body {
+  min-height: 100vh;
+  margin: 0;
+  padding: 40px 20px 140px; /* espacio inferior para botones */
+  background: linear-gradient(180deg, var(--accent-top) 0%, #0c4f84 30%, var(--dark-1) 70%, var(--dark-2) 100%);
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Contenedor principal */
+.titulo-pcback {
+  width: 500px;
+  max-width: 90%;
+  height: 100px;
+  margin: 40px auto;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+
+  background: rgba(20, 20, 30, 0.9); /* fondo oscuro */
+  border: 2px solid transparent;
+  border-radius: 20px;
+  background-clip: padding-box;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+}
+
+/* Borde degradado animado */
+.titulo-pcback::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  padding: 2px;
+  background: linear-gradient(
+    270deg,
+    #00fff2,
+    #00ff80,
+    #ffe600,
+    #ff00aa,
+    #7b00ff,
+    #00fff2
+  );
+  background-size: 600% 600%;
+  animation: moverBorde 8s linear infinite;
+
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  z-index: 0;
+}
+
+/* Texto con efecto brillante */
+.titulo-pcback span {
+  font-weight: 800;
+  font-size: 28px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background: linear-gradient(90deg, #7affff, #63b3ff, #d86dff, #ff66cc);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: brilloTexto 5s linear infinite;
+  z-index: 1;
+}
+
+/* Animación del borde */
+@keyframes moverBorde {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Animación del brillo del texto */
+@keyframes brilloTexto {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Contenedor de todas las tarjetas */
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* centra las filas */
+  gap: 30px; /* separación horizontal y vertical */
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Cada tarjeta */
+.card {
+  position: relative;
+  width: 200px;   /* ancho fijo */
+  height: 200px;  /* alto fijo */
+  border-radius: 14px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.25));
+  overflow: hidden;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+  border: 10px solid rgba(5, 32, 46, 100);
+  box-shadow: 0 0 10px rgba(0,200,255,0.3);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Imagen siempre arriba */
+.card img {
+  width: 100%;
+  height: 200px;           /* controla el alto de la parte superior */
+  object-fit: cover;       /* recorta sin deformar */
+  display: block;
+  background: linear-gradient(180deg, #222, #111);
+}
+
+/* Pie de tarjeta (pegado a la imagen, sin hueco extra) */
+.card-footer {
+  text-align: center;
+  padding: 6px 8px;        /* menos padding para hacerlo compacto */
+  font-weight: 600;
+  font-size: 13px;
+  color: #dcdcdc;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.18));
+  border-top: 1px solid rgba(255,255,255,0.05);
+  flex-shrink: 0;
+}
+
+/* Número flotante */
+.card-number {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(0,0,0,0.45));
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-weight: 700;
+  color: #fff;
+  font-size: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.45);
+  border: 1px solid rgba(255,255,255,0.03);
+}
+
+
+/* Botones abajo */
+.botones {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  z-index: 1000;
+}
+
+.btn {
+  min-width: 150px;
+  padding: 8px 14px;
+  border-radius: 24px;
+  font-size: 15px !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  font-weight: 700;
+  text-decoration: none;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+  border: 0;
+  cursor: pointer;
+}
+
+.btn-back {
+  background: linear-gradient(180deg, #4ea6ff 0%, #1e66c4 100%);
+  box-shadow: 0 10px 0 rgba(0,0,0,0.45);
+  border: 1px solid rgba(255,255,255,0.06);
+  padding-left: 22px;
+}
+
+.btn-home {
+  background: linear-gradient(180deg, #2f86da 0%, #0d4c9a 100%);
+  box-shadow: 0 10px 0 rgba(0,0,0,0.48);
+  border: 1px solid rgba(255,255,255,0.04);
+}
+
+.btn:active {
+  transform: translateY(4px);
+  box-shadow: 0 6px 0 rgba(0,0,0,0.35);
+}
+
+/* Responsivo */
+@media (max-width: 520px) {
+  .titulo { width: calc(100% - 40px); height: 80px; }
+  .card { width: 100%; }
+  .btn { min-width: 200px; padding: 10px 18px; }
+  body { padding-bottom: 120px; }
+}
+/* --- MODAL para ver imágenes en grande --- */
+.modal {
+  display: none; /* oculto por defecto */
+  position: fixed;
+  z-index: 2000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.85);
+  backdrop-filter: blur(4px);
+}
+
+/* Contenedor del contenido */
+.modal-content {
+  margin: 5% auto;
+  display: block;
+  width: 728px;
+  height: 90px;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 0 22px rgba(0,200,255,0.45);
+  border: 3px solid rgba(0,200,255,0.6);
+}
+
+/* Botón de cerrar */
+.close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: #fff;
+  font-size: 34px;
+  font-weight: bold;
+  cursor: pointer;
+  text-shadow: 0 0 8px #000;
+}
+
+.close:hover {
+  color: #0ff;
+}

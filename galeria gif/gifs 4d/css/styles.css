@@ -1,0 +1,393 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to bottom, #1e90ff, #001f3f);
+  color: white;
+  text-align: center;
+}
+
+.container {
+  padding: 20px;
+}
+
+.title-box {
+  font-size: 28px;
+  font-weight: bold;
+  background: linear-gradient(to right, #1e90ff, #001f3f);
+  border-radius: 10px;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  display: inline-block;
+}
+
+.menu-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+/* === Tarjetas holográficas - reemplazar .menu-btn antiguo === */
+.menu-btn {
+  width: 280px;
+  height: 350px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.32s ease, box-shadow 0.32s ease;
+  z-index: 0;
+
+  /* Fondo base oscuro (dos tonos) - se puede sobreescribir por variantes */
+  background: linear-gradient(180deg, #111827 0%, #041124 100%);
+  border: 1px solid rgba(255,255,255,0.03);
+   box-shadow: 
+    inset 0 6px 18px rgba(0,0,0,0.45),
+    0 6px 20px rgba(0, 200, 255, 0.12); /* brillo exterior suave */}
+
+/* Variante: GIFS MUJERES (violeta oscuro -> negro) */
+.menu-btn.mujeres {
+  background: linear-gradient(180deg, #2b0048 0%, #05030a 100%);
+}
+
+/* Variante: GIFS HOMBRES (azul oscuro -> negro) */
+.menu-btn.hombres {
+  background: linear-gradient(180deg, #05223a 0%, #02050a 100%);
+}
+
+/* Hover */
+.menu-btn:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: inset 0 10px 30px rgba(0,0,0,0.5),
+              0 18px 40px rgba(0,0,0,0.8), 0 0 36px rgba(0,200,180,0.12);
+}
+
+/* Sheen / espejo (reflejo diagonal) */
+.menu-btn::after {
+  content: "";
+  position: absolute;
+  top: -80%;
+  left: -80%;
+  width: 240%;
+  height: 240%;
+  transform: rotate(25deg);
+  background: linear-gradient(
+    120deg,
+    rgba(255,255,255,0) 0%,
+    rgba(255,255,255,0.10) 28%,
+    rgba(255,255,255,0.06) 40%,
+    rgba(255,255,255,0) 70%
+  );
+  mix-blend-mode: overlay;
+  opacity: 0.12;
+  animation: sheenMove 6s linear infinite;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* hacer sheen más visible al hover */
+.menu-btn:hover::after {
+  opacity: 0.28;
+  animation-duration: 3.5s;
+}
+
+/* Texto (usar <span> dentro del enlace) */
+.menu-btn span {
+  position: relative;
+  z-index: 3;
+  display: inline-block;
+  padding: 8px 12px;
+  font-weight: 900;
+  font-size: 22px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+
+  /* texto holográfico multicolor */
+  background: linear-gradient(90deg, #ff6ec4, #e55d87, #00d4ff, #ffd400);
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textFlow 5s ease infinite;
+
+  text-shadow: 0 0 6px rgba(255,255,255,0.06), 0 0 18px rgba(0,0,0,0.45);
+}
+
+/* Líneas decorativas arriba y abajo del texto */
+.menu-btn span::before,
+.menu-btn span::after {
+  content: "";
+  position: absolute;
+  left: 12%;
+  right: 12%;
+  height: 3px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #ff8a00, #ff4ea6, #00d4ff);
+  background-size: 200% 100%;
+  animation: lineGlow 4s linear infinite;
+  z-index: 3;
+}
+
+.menu-btn span::before { top: calc(50% - 36px); } /* línea superior */
+.menu-btn span::after  { top: calc(50% + 24px); } /* línea inferior */
+
+/* ===== Animaciones ===== */
+@keyframes borderFlow {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes sheenMove {
+  0%   { transform: translateX(-100%) rotate(25deg); }
+  100% { transform: translateX(100%) rotate(25deg); }
+}
+
+@keyframes textFlow {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes lineGlow {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 15px;
+  justify-items: center;
+  margin: 20px auto;
+  max-width: 1000px;
+}
+
+/* === Borde degradado (wrapper) === */
+.gif-card-wrapper {
+  display: inline-block;
+  border-radius: 12px;
+  padding: 6px;
+  background: linear-gradient(135deg, #601070, #406E85);;
+}
+
+/* === Cuadrito interno === */
+.gif-card {
+  width: 80px;
+  height: 100px;
+  border-radius: 10px;
+  background: transparent;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gif-card:hover {
+  transform: scale(1.15);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+  z-index: 10;
+}
+
+/* Efecto brillo translúcido */
+.gif-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  background: linear-gradient(to top left, rgba(255,255,255,0.3), rgba(255,255,255,0));
+  pointer-events: none;
+}
+
+/* === Imagen en la parte superior === */
+.gif-img {
+  width: 100%;
+  height: 70%;
+  overflow: hidden;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  background: #222;
+}
+
+.gif-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Franja morada */
+.gif-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 25px;
+  background: rgba(47, 85, 161, 0.85);
+  border-radius: 0 0 10px 10px;
+  z-index: 1;
+}
+
+/* Texto "GIF" con animación ola */
+.gif-text {
+  position: absolute;
+  bottom: 0;          /* Mantiene el texto ligado a la barra */
+  left: 0;
+  right: 0;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+  color: white;
+  line-height: 20px;  /* Aumenta el alto de la línea */
+  padding-bottom: 4px; /* Ajusta un poco para centrar */
+  z-index: 2;
+  animation: waveText 2.5s infinite ease-in-out;
+}
+
+/* Numerito morado */
+.gif-num {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  font-size: 10px;
+  background: red;
+  color: white;
+  border-radius: 7px;
+  padding: 2px 4px;
+  z-index: 3; /* 🔥 Lo pone por encima de la franja */
+}
+
+/* === Animación ola/transparencia === */
+@keyframes waveText {
+  0%   { transform: translateY(0); opacity: 1; }
+  25%  { transform: translateY(-3px); opacity: 0.7; }
+  50%  { transform: translateY(0); opacity: 1; }
+  75%  { transform: translateY(3px); opacity: 0.7; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+/* === small-btn === */
+.small-btn {
+  background: linear-gradient(90deg, #6a11cb, #ff3cac);
+  border: none;
+  border-radius: 50px;
+  padding: 12px 30px;
+  font-size: 15px;
+  font-weight: bold;
+  color: black;
+  cursor: pointer;
+  text-align: center;
+  margin: 10px auto;
+  display: block;
+  width: fit-content;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+  transition: all 0.3s ease;
+
+  /* 🚫 quitar subrayado */
+  text-decoration: none;
+}
+
+.small-btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.6);
+  filter: brightness(1.1);
+
+  /* por si acaso también en hover */
+  text-decoration: none;
+}
+
+
+
+
+/* === rectangle-box con efecto holográfico === */
+.rectangle-box {
+  width: 400px;
+  height: 100px;
+  margin: 20px auto;
+  border-radius: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+
+  background: rgba(15, 15, 20, 0.85);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  box-shadow: 0px 0px 25px rgba(0, 200, 255, 0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+/* Borde animado holográfico */
+.rectangle-box::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  padding: 2px;
+  background: linear-gradient(
+    135deg,
+    #ff00ff,
+    #00f0ff,
+    #00ff88,
+    #ffcc00,
+    #ff0066,
+    #ff00ff
+  );
+  background-size: 400% 400%;
+  animation: borderFlow 6s linear infinite;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box,
+                 linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Texto holográfico centrado */
+.rectangle-box span {
+  font-weight: 900;
+  font-size: 26px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background: linear-gradient(
+    90deg,
+    #ff00ff,
+    #00f0ff,
+    #00ff88,
+    #ffcc00,
+    #ff0066,
+    #ff00ff
+  );
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textFlow 5s ease infinite;
+  text-shadow: 0 0 12px rgba(255,255,255,0.25);
+
+  /* 🚫 estas dos líneas son las que eliminan selección/click */
+  user-select: none;
+  pointer-events: none;
+}
+
+/* === Animaciones para bordes y texto === */
+@keyframes borderFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes textFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+

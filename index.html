@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Xatspace — Portfolio</title>
+  <link rel="stylesheet" href="css/portfolio-minimal.css" />
+
+  <!-- 🔹 Agregar aquí Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    /* Ajustes para logo y perfil */
+    .logo-img {
+      width: 40px;
+      height: 40px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    .profile-img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-left: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .header .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .header .profile {
+      margin-left: 20px;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="fondo-abstracto" aria-hidden="true"></canvas>
+  <div class="container">
+    <header class="header fade-in">
+      <div class="profile">
+        <img src="https://xatimg.com/image/Pz4sE7OCoLkT.png" alt="perfil" class="profile-img">
+      </div>
+      <div class="logo">
+        <img src="https://i.ibb.co/gZ4FvJ3n/otro-logo.gif" alt="logo" class="logo-img">
+      </div>
+      <nav class="nav">
+        <a href="index.html">Inicio</a>
+        <a href="galeria gif/index.html">Galería GIF</a>
+        <a href="galerias fondos/index.html">Galerías Fondos</a>
+        <a href="precios promociones/precios.html" class="menu-btn">Listado de Precios</a>
+        <span class="nav-fixed">Xatspace</span>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="hero-left">
+        <h1 class="hero-title">Bienvienido a mi espacio de trabajo <span class="accent">"Graphic Designer"</span></h1>
+        <p class="hero-desc">Explora mi galería de diseños exclusivos: fondos, GIFs y packs creados para destacar.</p>
+        <div class="hero-cta">
+          <a class="btn-primary" href="https://xat.com/hasken">Hasken</a>
+          <a class="btn-ghost" href="precios promociones/precios.html">Ver precios</a>
+        </div>
+
+
+
+<!-- 🔹 Botones sociales -->
+<div class="social-section">
+  <p class="social-text">Aquí puedes comunicarte conmigo:</p>
+  <div class="social-buttons">
+    <a href="https://facebook.com/TU_USUARIO" target="_blank" class="social-btn fb">
+      <i class="fab fa-facebook-f"></i>
+    </a>
+    <a href="https://instagram.com/TU_USUARIO" target="_blank" class="social-btn ig">
+      <i class="fab fa-instagram"></i>
+    </a>
+    <a href="https://wa.me/5493821497105" target="_blank" class="social-btn wa">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+  </div>
+</div>
+
+ 
+    <footer class="footer fade-in">© 2025 Xatspace</footer>
+  </div>
+
+
+<!-- REPRODUCTOR -->
+<div class="vip-player" id="vipPlayer">
+  <canvas id="bgCanvas"></canvas>
+
+  <div class="vip-content">
+    <!-- Botones de control -->
+    <div class="control-buttons">
+      <button id="prevBtn" class="circle-btn"><i class="fas fa-backward"></i></button>
+      <button id="playPauseBtn" class="circle-btn"><i class="fas fa-play"></i></button>
+      <button id="nextBtn" class="circle-btn"><i class="fas fa-forward"></i></button>
+    </div>
+
+    <!-- Ecualizador -->
+    <div class="equalizer">
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+
+    <!-- Volumen -->
+    <div class="volume-row">
+      <i class="fas fa-volume-up"></i>
+      <input type="range" id="volume" min="0" max="100" value="70">
+      <span id="volumeVal">70%</span>
+    </div>
+
+    <!-- Barra inferior -->
+    <div class="info-bar">
+      <span id="currentTime"></span> | 
+      <span id="currentDate"></span>
+    </div>
+  </div>
+
+  <audio id="radioAudio">
+    <source src="Repructor/musica1.mp3" type="audio/mpeg">
+    <source src="Repructor/musica2.mp3" type="audio/mpeg">
+    <source src="Repructor/musica3.mp3" type="audio/mpeg">
+  </audio>
+</div>
+
+<style>
+.vip-player {
+  position: relative;
+  width: 420px;
+  margin: 40px auto;
+  padding: 25px 20px;
+  border-radius: 18px;
+  background: rgba(0,0,0,0); /* transparente */
+  box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+  overflow: hidden;
+  text-align: center;
+  color: #fff;
+}
+
+#bgCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.vip-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+/* Botones */
+.control-buttons { display: flex; gap: 20px; }
+.circle-btn {
+  font-size: 20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.3);
+
+  /* Degradado animado suave */
+  background: linear-gradient(135deg, rgba(0,255,150,0.7), rgba(0,200,255,0.7), rgba(180,0,255,0.7));
+  background-size: 300% 300%;
+
+  color: #fff;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 0 15px rgba(0,255,150,0.5), 0 0 25px rgba(0,200,255,0.4), 0 0 35px rgba(180,0,255,0.4);
+  transition: all 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.circle-btn:hover {
+  animation: gradientMove 4s ease infinite; /* más suave */
+  transform: scale(1.15) rotate(-2deg);
+  box-shadow: 0 0 25px rgba(0,255,150,0.7), 0 0 40px rgba(0,200,255,0.6), 0 0 50px rgba(180,0,255,0.6);
+}
+
+@keyframes gradientMove {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+}
+/* Ecualizador */
+.equalizer { display: flex; justify-content:center; align-items:flex-end; gap:4px; height:40px; }
+.equalizer span { display:block; width:6px; height:20px; background:#fff; opacity:0.8; animation:eqAnim 1s infinite; border-radius:3px; }
+.equalizer span:nth-child(odd) { animation-delay:0.2s; }
+.equalizer span:nth-child(even) { animation-delay:0.5s; }
+@keyframes eqAnim {0%,100%{height:10px;}50%{height:35px;}}
+
+/* Volumen */
+.volume-row { display:flex; align-items:center; gap:10px; }
+.volume-row input { width:150px; }
+#volumeVal { font-size:14px; color:#ddd; }
+
+/* Barra inferior */
+.info-bar {
+  font-size:14px; margin-top:5px;
+  padding:6px 12px; border-radius:12px;
+  background:rgba(255,255,255,0.08);
+  backdrop-filter: blur(6px); color:#fff;
+}
+</style>
+
+<script>
+// --- Canvas de notas musicales con gradientes ---
+const vipPlayer = document.getElementById('vipPlayer');
+const canvas = document.getElementById("bgCanvas");
+const ctx = canvas.getContext("2d");
+
+function resizeCanvas() {
+  canvas.width = vipPlayer.clientWidth;
+  canvas.height = vipPlayer.clientHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+const notes = [];
+const noteSymbols = ["\u266A", "\u266B"]; // ♫ ♬
+
+for (let i = 0; i < 30; i++) {
+  notes.push({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    speedY: 0.3 + Math.random() * 0.7,
+    speedX: Math.random() * 0.5 - 0.25, // movimiento lateral
+    symbol: noteSymbols[Math.floor(Math.random() * noteSymbols.length)],
+    size: 14 + Math.random() * 12,
+    alpha: 0.5 + Math.random() * 0.5,
+    color: [
+      "rgba(0,255,150,1)",   // verde
+      "rgba(0,200,255,1)",   // celeste
+      "rgba(180,0,255,1)"    // lila
+    ]
+  });
+}
+
+function animate() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height); // fondo transparente
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+
+  notes.forEach(note => {
+    ctx.font = `bold ${note.size}px Arial`;
+
+    // Crear gradiente radial por nota
+    const gradient = ctx.createRadialGradient(note.x, note.y, 1, note.x, note.y, note.size);
+    gradient.addColorStop(0, note.color[0]);
+    gradient.addColorStop(0.5, note.color[1]);
+    gradient.addColorStop(1, note.color[2]);
+    ctx.fillStyle = gradient;
+
+    ctx.globalAlpha = note.alpha; // transparencia individual
+    ctx.fillText(note.symbol, note.x, note.y);
+    ctx.globalAlpha = 1; // reset
+
+    // mover notas
+    note.y += note.speedY;
+    note.x += note.speedX;
+
+    // rebote lateral si llega al borde
+    if (note.x < 0 || note.x > canvas.width) note.speedX *= -1;
+
+    // reaparecer arriba
+    if (note.y > canvas.height) {
+      note.y = -20;
+      note.x = Math.random() * canvas.width;
+    }
+  });
+
+  requestAnimationFrame(animate);
+}
+
+animate();
+
+// --- Reproductor ---
+const audio = document.getElementById('radioAudio');
+const playPauseBtn = document.getElementById('playPauseBtn');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+const volume = document.getElementById('volume');
+const volumeVal = document.getElementById('volumeVal');
+const currentTimeEl = document.getElementById('currentTime');
+const currentDateEl = document.getElementById('currentDate');
+
+const playlist = [
+  "Repructor/musica1.mp3",
+  "Repructor/musica2.mp3",
+  "Repructor/musica3.mp3"
+];
+let currentTrack = 0;
+
+function loadTrack(index) {
+  audio.src = playlist[index];
+  audio.load();
+  audio.play();
+  playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+}
+playPauseBtn.addEventListener('click', () => {
+  if (audio.paused) { audio.play(); playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>'; }
+  else { audio.pause(); playPauseBtn.innerHTML = '<i class="fas fa-play"></i>'; }
+});
+nextBtn.addEventListener('click', () => { currentTrack=(currentTrack+1)%playlist.length; loadTrack(currentTrack); });
+prevBtn.addEventListener('click', () => { currentTrack=(currentTrack-1+playlist.length)%playlist.length; loadTrack(currentTrack); });
+volume.addEventListener('input', () => { audio.volume = volume.value / 100; volumeVal.textContent = volume.value + '%'; });
+
+function updateDateTime() {
+  const now = new Date();
+  currentTimeEl.textContent = now.toLocaleTimeString();
+  currentDateEl.textContent = now.toLocaleDateString();
+}
+setInterval(updateDateTime, 1000);
+updateDateTime();
+</script>
+
+  <script src="../assets/modules/fondo-abstracto.js" defer></script>
+  <script src="js/portfolio-minimal.js" defer></script>
+</body>
+</html>
+

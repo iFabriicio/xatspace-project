@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Xatspace — Modern Dark</title>
+  <link rel="stylesheet" href="css/dark-ultimate.css" />
+<link rel="stylesheet" href="css/dark-ultimate-v2.css" />
+</head>
+<body>
+  <canvas id="fondo-abstracto" aria-hidden="true"></canvas>
+  <div class="container">
+    <header class="site-header animated-in">
+      <div class="logo"><strong>Xatspace</strong></div>
+      <nav class="primary"><a href="index.html">Inicio</a> <a href="galeria gif/index.html">Galería GIF</a> <a href="galerias fondos/index.html">Galerías Fondos</a> <a href="precios promociones/listado_precios.html">Precios</a></nav>
+    </header>
+
+    <section class="hero center">
+      <h1 class="title">Bienvenido a <span class="accent">Xatspace</span></h1>
+      <p class="subtitle">Tu biblioteca de fondos, gifs y recursos para personalizar tus salas. Diseño renovado, estilo moderno.</p>
+      <div><a class="big-cta" href="galeria gif/index.html">Ver galerías</a></div>
+    </section>
+
+    
+    <section class="cards-grid" aria-label="Secciones principales">
+      <article class="card-tile"><div class="tile-icon"><img src="img/home.svg" alt="Inicio"></div><div class="tile-label">GALERÍAS GIFS</div></article>
+      <article class="card-tile"><div class="tile-icon"><img src="img/instagram.svg" alt="Instagram"></div><div class="tile-label">GALERÍAS FONDOS</div></article>
+      <article class="card-tile"><div class="tile-icon"><img src="img/facebook.svg" alt="Facebook"></div><div class="tile-label">GALERÍAS XATSPACE</div></article>
+      <article class="card-tile"><div class="tile-icon"><img src="img/whatsapp.svg" alt="Whatsapp"></div><div class="tile-label">PRECIOS PROMOCIONES</div></article>
+    </section>
+
+
+    <h2 class="section-title center"><span class="underline">DISEÑOS GRÁFICOS</span></h2>
+
+    <section class="gallery-section">
+      <div class="gallery-row">
+        <div class="gallery-item"><div class="label">PCBACK</div></div>
+        <div class="gallery-item"><div class="label">PSTYLE</div></div>
+        <div class="gallery-item"><div class="label">BANNER</div></div>
+      </div>
+    </section>
+
+    <div class="footer-cta">
+      <div class="nav-arrow">&lt;</div>
+      <a class="btn-pill" href="index.html">MENÚ PRINCIPAL</a>
+      <div class="nav-arrow">&gt;</div>
+    </div>
+
+    <footer class="site-footer small-muted">© 2025 Xatspace — Rediseño oscuro moderno</footer>
+  </div>
+
+  <script src="../assets/modules/fondo-abstracto.js" defer></script>
+  <script src="js/dark-ultimate.js" defer></script>
+  <script src="js/dark-ultimate-v2.js" defer></script>
+</body>
+</html>
