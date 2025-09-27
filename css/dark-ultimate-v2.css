@@ -1,0 +1,38 @@
+/* dark-ultimate-v2.css - Final polish */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap');
+:root{ --neon1:#7c4dff; --neon2:#00e5ff; --bg:#05060a; --card-shadow: 0 18px 60px rgba(2,6,23,0.85); --muted: rgba(234,243,255,0.75); }
+body{ font-family:'Outfit', Inter, system-ui; background: radial-gradient(circle at 10% 10%, rgba(124,77,255,0.04), transparent 6%), radial-gradient(circle at 90% 90%, rgba(0,229,255,0.03), transparent 8%), var(--bg); color:#eaf3ff;}
+
+/* icon tiles */
+.tile-icon { width:84px; height:84px; border-radius:16px; display:flex; align-items:center; justify-content:center; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); box-shadow: var(--card-shadow); transition: transform .28s ease, box-shadow .28s ease; }
+.tile-icon img{ width:58px; height:58px; display:block; filter: drop-shadow(0 10px 30px rgba(0,0,0,0.6)); }
+.tile-label{ margin-top:10px; font-weight:700; color:rgba(234,243,255,0.85); font-size:14px; }
+
+/* apply to card tiles - keep position */
+.card-tile { display:flex; flex-direction:column; align-items:center; justify-content:center; padding:18px; }
+.card-tile:hover .tile-icon{ transform: translateY(-10px) scale(1.06); box-shadow: 0 34px 100px rgba(2,6,23,0.92); background: linear-gradient(135deg, rgba(124,77,255,0.06), rgba(0,229,255,0.04)); }
+
+/* big CTA refined */
+.big-cta{ border-radius:14px; padding:14px 32px; background: linear-gradient(90deg,var(--neon1), #ff4da6); color:#031026; font-weight:800; box-shadow: 0 22px 60px rgba(124,77,255,0.12); transition: transform .18s; }
+.big-cta:hover{ transform: translateY(-6px) scale(1.02); box-shadow: 0 36px 110px rgba(124,77,255,0.18); }
+
+/* gallery item refinement: add placeholder gradient */
+.gallery-item{ background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005)); }
+.gallery-item::before{ content:""; position:absolute; inset:0; background: linear-gradient(135deg, rgba(124,77,255,0.06), rgba(0,229,255,0.03)); mix-blend-mode: overlay; opacity:0.25; pointer-events:none; }
+
+/* pill buttons */
+.btn-pill{ padding:10px 18px; border-radius:999px; background: linear-gradient(90deg,var(--neon1), #ff4da6); color:#021226; font-weight:800; box-shadow: 0 18px 48px rgba(124,77,255,0.12); }
+
+/* small helper for icon rows */
+.icon-row{ display:flex; gap:12px; align-items:center; justify-content:center; }
+.icon-btn{ display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); color:var(--muted); font-weight:700; text-decoration:none; transition: all .18s ease; }
+.icon-btn img{ width:20px; height:20px; display:block; filter: drop-shadow(0 6px 18px rgba(0,0,0,0.6)); }
+.icon-btn:hover{ transform: translateY(-4px); color:#fff; box-shadow: 0 18px 48px rgba(124,77,255,0.12); }
+
+/* ripple effect helper */
+.ripple{ position:relative; overflow:hidden; }
+.ripple::after{ content:""; position:absolute; left:50%; top:50%; width:0; height:0; background: radial-gradient(circle, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 40%); transform: translate(-50%,-50%); border-radius:50%; opacity:0; transition: width .35s ease, height .35s ease, opacity .5s ease; }
+
+/* responsive tweaks */
+@media(max-width:900px){ .cards-grid{ grid-template-columns: repeat(2,1fr); } .tile-icon{ width:74px; height:74px; } }
+@media(max-width:600px){ .cards-grid{ grid-template-columns: 1fr; } }

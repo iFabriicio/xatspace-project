@@ -1,0 +1,186 @@
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(to bottom, #1d71f2, #003366);
+  color: white;
+  text-align: center;
+}
+
+.contenedor {
+  padding: 40px 20px;
+  padding-bottom: 100px;
+}
+
+/* === Rectángulo holográfico === */
+.rectangle-box {
+  width: 400px;
+  height: 100px;
+  margin: 20px auto 40px auto;
+  border-radius: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+
+  background: rgba(15, 15, 20, 0.85);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  box-shadow: 0px 0px 25px rgba(0, 200, 255, 0.25);
+}
+
+.rectangle-box::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  padding: 2px;
+  background: linear-gradient(
+    135deg,
+    #ff00ff,
+    #00f0ff,
+    #00ff88,
+    #ffcc00,
+    #ff0066,
+    #ff00ff
+  );
+  background-size: 400% 400%;
+  animation: borderFlow 6s linear infinite;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box,
+                 linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.rectangle-box span {
+  font-weight: 900;
+  font-size: 26px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background: linear-gradient(
+    90deg,
+    #ff00ff,
+    #00f0ff,
+    #00ff88,
+    #ffcc00,
+    #ff0066,
+    #ff00ff
+  );
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textFlow 5s ease infinite;
+  text-shadow: 0 0 12px rgba(255,255,255,0.25);
+  user-select: none;
+}
+
+@keyframes borderFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes textFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* === Grid de precios === */
+.precios-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.card {
+  background: #002b66;
+  border: 2px solid #00c3ff;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 0 15px rgba(0, 195, 255, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.04);
+  box-shadow: 0 0 20px rgba(0, 195, 255, 0.7);
+}
+
+.card h3 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  background: linear-gradient(90deg, #00f0ff, #00ff85);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 8px rgba(0, 255, 200, 0.4);
+  letter-spacing: 1px;
+}
+
+.card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+
+.card ul li {
+  font-size: 16px;
+  margin: 10px 0;
+  color: #e0e8ff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.card ul li:hover {
+  color: #ffffff;
+  text-shadow: 0 0 8px rgba(0, 200, 255, 0.6);
+}
+
+.precio {
+  font-weight: 700;
+  font-size: 17px;
+  background: linear-gradient(90deg, #ffd700, #ffae00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 10px rgba(255, 200, 0, 0.6);
+  transition: transform 0.2s ease;
+}
+
+.precio:hover {
+  transform: scale(1.1);
+}
+
+.separador {
+  margin: 40px auto;
+  height: 2px;
+  width: 80%;
+  background: linear-gradient(to right, transparent, #00c3ff, transparent);
+}
+
+.volver {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, #8a2be2, #ff2e92); /* 🎨 CAMBIO DE COLOR */
+  color: black;  /* Texto negro para que contraste con el rosa */
+  font-weight: bold;
+  padding: 12px 30px;
+  border-radius: 25px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.volver:hover {
+  background: linear-gradient(90deg, #a855f7, #ff4da6); /* Versión hover */
+  transform: translateX(-50%) scale(1.05);
+}

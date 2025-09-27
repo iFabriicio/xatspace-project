@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GALERIAS DE FONDOS</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/slider.js" defer></script>
+
+  <style>
+    #bg-wrap{position:fixed;inset:0;z-index:-1;pointer-events:none;}
+    #bg-canvas{width:100%;height:100%;display:block;}
+    .bg-content{position:relative;z-index:1;}
+  </style>
+
+<link rel="stylesheet" href="../css/modern-dark.css" />
+<link rel="stylesheet" href="../css/modern-dark-pro.css" />
+<link rel="stylesheet" href="../css/dark-ultimate.css" />
+<link rel="stylesheet" href="../css/dark-ultimate-v2.css" />
+<link rel="stylesheet" href="../css/portfolio-minimal.css" />
+</head>
+<body>
+  <canvas id="fondo-abstracto" aria-hidden="true"></canvas>
+
+<div id="bg-wrap"><canvas id="bg-canvas"></canvas></div>
+<div class="bg-content">
+
+  <!-- Encabezado fijo con texto animado -->
+<div class="header">
+  <span>GALERIAS DE FONDOS</span>
+</div>
+
+
+  <!-- Carrusel -->
+  <div class="carousel-container">
+    <button class="arrow prev">&#10094;</button>
+    <div class="carousel">
+      <a href="pcback/index.html" class="card"><span>PCBACK</span></a>
+      <a href="pstyle/index.html" class="card"><span>PSTYLE</span></a>
+      <a href="banner/index.html" class="card"><span>BANNER</span></a>
+      <a href="fondos salas/index.html" class="card"><span>FONDOS SALAS</span></a>
+      <a href="fondos_eventos/index.html" class="card"><span>FONDOS EVENTOS</span></a>
+    </div>
+    <button class="arrow next">&#10095;</button>
+  </div>
+
+  <!-- Botón volver -->
+  <div class="back-container">
+    <span class="back-arrow">&#10094;</span>
+    <a href="../index.html" class="back-button">MENÚ PRINCIPAL</a> <a href="../index.html" class="btn-back"></a>
+  </div>
+
+</div>
+<script type="module" src="../../assets/fondo-loader.js"></script>
+  <script src="../../assets/modules/fondo-abstracto.js" defer></script>
+  <script src="../js/modern-dark.js" defer></script>
+  <script src="../../assets/modules/fondo-abstracto.js" defer></script>
+  <script src="../js/dark-pro.js" defer></script>
+  <script src="../../assets/modules/fondo-abstracto.js" defer></script>
+  <script src="../js/dark-ultimate.js" defer></script>
+</html>

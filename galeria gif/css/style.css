@@ -1,0 +1,354 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to bottom, #0d8df7, #002f61);
+  color: white;
+  text-align: center;
+}
+
+/* --- Rectángulo fijo arriba futurista --- */
+.header {
+  width: 480px;
+  max-width: calc(100% - 40px);
+  height: 96px;
+  margin: 30px auto 60px auto;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+
+  background: rgba(15, 15, 20, 0.8);
+  border: 2px solid transparent;
+  border-radius: 16px;
+  background-clip: padding-box;
+  box-shadow: 0px 0px 25px rgba(0, 200, 255, 0.25);
+}
+
+/* Borde animado holográfico */
+.header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  padding: 2px;
+  background: linear-gradient(
+    135deg,
+    #ff00ff,
+    #00f0ff,
+    #00ff88,
+    #ffcc00,
+    #ff0066,
+    #ff00ff
+  );
+  background-size: 400% 400%;
+  animation: borderFlow 6s linear infinite;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box,
+                 linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Texto holográfico centrado */
+.header span {
+  font-weight: 900;
+  font-size: 22px;
+  letter-spacing: 2px;
+  background: linear-gradient(
+    90deg,
+    #ff00ff,
+    #00f0ff,
+    #00ff88,
+    #ffcc00,
+    #ff0066,
+    #ff00ff
+  );
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textFlow 5s ease infinite;
+  text-shadow: 0 0 12px rgba(255,255,255,0.25);
+
+  /* 👇 centrado absoluto */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+
+/* Animación borde */
+@keyframes borderFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Animación texto */
+@keyframes textFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+
+/* Animación fade solo en el texto */
+@keyframes fadeTexto {
+  0%   { opacity: 0; transform: translateY(6px); }
+  20%  { opacity: 1; transform: translateY(0); }
+  80%  { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-6px); }
+}
+
+.carousel-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 40px 0;
+  position: relative;
+}
+
+.carousel {
+  display: flex;
+  gap: 20px;
+  overflow: hidden;
+  width: 900px;
+  scroll-behavior: smooth;
+}
+
+.card {
+  min-width: 280px;
+  height: 350px;
+  background: linear-gradient(to bottom, #3aa5f5, #1262c4);
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  font-weight: bold;
+  box-shadow: 0px 4px 8px rgba(0,0,0,0.3);
+}
+
+.arrow {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 36px;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.arrow:hover {
+  transform: scale(1.3);
+}
+
+.back-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 30px 0;
+  gap: 8px;
+}
+
+.back-button {
+  display: inline-block;
+  padding: 14px 36px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #111; /* 👈 texto en negro */
+  text-decoration: none;
+  border-radius: 50px;
+  background: linear-gradient(90deg, #6a11cb, #ff4b91); /* degradado violeta → rosa */
+  box-shadow: 0px 4px 12px rgba(106, 17, 203, 0.3), 0px 6px 18px rgba(255, 75, 145, 0.25);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.back-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0px 6px 16px rgba(106, 17, 203, 0.5), 0px 8px 22px rgba(255, 75, 145, 0.4);
+}
+
+
+.back-arrow {
+  font-size: 24px;
+  color: white;
+}
+
+/* Estilo base común */
+.carousel .card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 280px;
+  height: 350px;
+  margin: 0 12px;
+  border-radius: 1.2rem;
+  background: rgba(20, 20, 20, 0.6); /* vidrio oscuro */
+  backdrop-filter: blur(14px) saturate(120%);
+  -webkit-backdrop-filter: blur(14px) saturate(120%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #eee;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.35s ease;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+}
+
+/* Borde iluminado dinámico */
+.carousel .card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 1.2rem;
+  padding: 2px;
+  background: linear-gradient(135deg, rgba(255,0,150,0.4), rgba(0,212,255,0.4));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.2;
+  transition: opacity 0.3s ease;
+}
+
+.carousel .card:hover::before {
+  opacity: 0.7;
+}
+
+/* Reflejo "sheen" en movimiento */
+.carousel .card::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.08), transparent);
+  transform: rotate(25deg);
+  animation: sheen 6s infinite;
+}
+
+@keyframes sheen {
+  0% { transform: translateX(-100%) rotate(25deg); }
+  100% { transform: translateX(100%) rotate(25deg); }
+}
+
+/* Efecto hover */
+.carousel .card:hover {
+  transform: translateY(-10px) scale(1.05) rotate(-1deg);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.15),
+              0 0 40px rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+/* === Colores individuales por botón === */
+.carousel .card:nth-child(1) { /* GIFS 4D */
+  background: linear-gradient(to bottom, #3d0066, #000);
+}
+
+.carousel .card:nth-child(2) { /* PCBACK */
+  background: linear-gradient(to bottom, #002244, #000);
+}
+
+.carousel .card:nth-child(3) { /* PSTYLE */
+  background: linear-gradient(to bottom, #440000, #000);
+}
+
+.carousel .card:nth-child(4) { /* PARPADEOS */
+  background: linear-gradient(to bottom, #003311, #000);
+}
+
+/* === Texto holográfico multicolor con líneas arriba y abajo === */
+.carousel .card span {
+  position: relative;
+  display: inline-block;
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 12px 24px;
+  background: linear-gradient(
+    90deg,
+    #ff6ec4,
+    #7873f5,
+    #00d4ff,
+    #ff9d00,
+    #ff3e3e,
+    #ff6ec4
+  );
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textHolo 6s ease infinite;
+  text-shadow: 0 0 10px rgba(255,255,255,0.15),
+               0 0 20px rgba(0,0,0,0.5);
+}
+
+/* Líneas decorativas arriba y abajo */
+.carousel .card span::before,
+.carousel .card span::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #ff6ec4, #00d4ff, #ff9d00, #ff3e3e);
+  background-size: 200% 200%;
+  animation: lineGlow 4s linear infinite;
+}
+
+.carousel .card span::before {
+  top: 0;
+}
+
+.carousel .card span::after {
+  bottom: 0;
+}
+
+/* Animación del degradado holográfico */
+@keyframes textHolo {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Animación movimiento de las líneas */
+@keyframes lineGlow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+/* Brillo al hacer click */
+@keyframes textFlash {
+  0% {
+    text-shadow: 0 0 10px rgba(255,255,255,0.2),
+                 0 0 20px rgba(255,255,255,0.15);
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(255,255,255,0.9),
+                 0 0 40px rgba(255,255,255,0.7),
+                 0 0 80px rgba(255,255,255,0.5);
+  }
+  100% {
+    text-shadow: 0 0 10px rgba(255,255,255,0.15),
+                 0 0 20px rgba(0,0,0,0.5);
+  }
+}
+
+.carousel .card:active span {
+  animation: textHolo 6s ease infinite, textFlash 0.6s ease;
+}
+
+
+
+
+
+

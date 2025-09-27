@@ -1,0 +1,381 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to bottom, #1e90ff, #001f3f);
+  color: white;
+  text-align: center;
+}
+
+.container {
+  padding: 20px;
+}
+
+.title-box {
+  font-size: 28px;
+  font-weight: bold;
+  background: linear-gradient(to right, #1e90ff, #001f3f);
+  border-radius: 10px;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  display: inline-block;
+}
+
+.menu-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+/* === Tarjetas holográficas - reemplazar .menu-btn antiguo === */
+.menu-btn {
+  width: 280px;
+  height: 350px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.32s ease, box-shadow 0.32s ease;
+  z-index: 0;
+
+  /* Fondo base oscuro (dos tonos) - se puede sobreescribir por variantes */
+  background: linear-gradient(180deg, #111827 0%, #041124 100%);
+  border: 1px solid rgba(255,255,255,0.03);
+   box-shadow: 
+    inset 0 6px 18px rgba(0,0,0,0.45),
+    0 6px 20px rgba(0, 200, 255, 0.12); /* brillo exterior suave */}
+
+/* Variante: MUJERES (violeta oscuro -> negro) */
+.menu-btn.mujeres {
+  background: linear-gradient(180deg, #2b0048 0%, #05030a 100%);
+}
+
+/* Variante: HOMBRES (azul oscuro -> negro) */
+.menu-btn.hombres {
+  background: linear-gradient(180deg, #05223a 0%, #02050a 100%);
+}
+
+/* Hover */
+.menu-btn:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: inset 0 10px 30px rgba(0,0,0,0.5),
+              0 18px 40px rgba(0,0,0,0.8), 0 0 36px rgba(0,200,180,0.12);
+}
+
+/* Sheen / espejo (reflejo diagonal) */
+.menu-btn::after {
+  content: "";
+  position: absolute;
+  top: -80%;
+  left: -80%;
+  width: 240%;
+  height: 240%;
+  transform: rotate(25deg);
+  background: linear-gradient(
+    120deg,
+    rgba(255,255,255,0) 0%,
+    rgba(255,255,255,0.10) 28%,
+    rgba(255,255,255,0.06) 40%,
+    rgba(255,255,255,0) 70%
+  );
+  mix-blend-mode: overlay;
+  opacity: 0.12;
+  animation: sheenMove 6s linear infinite;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* hacer sheen más visible al hover */
+.menu-btn:hover::after {
+  opacity: 0.28;
+  animation-duration: 3.5s;
+}
+
+/* Texto (usar <span> dentro del enlace) */
+.menu-btn span {
+  position: relative;
+  z-index: 3;
+  display: inline-block;
+  padding: 8px 12px;
+  font-weight: 900;
+  font-size: 22px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+
+  /* texto holográfico multicolor */
+  background: linear-gradient(90deg, #ff6ec4, #e55d87, #00d4ff, #ffd400);
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textFlow 5s ease infinite;
+
+  text-shadow: 0 0 6px rgba(255,255,255,0.06), 0 0 18px rgba(0,0,0,0.45);
+}
+
+/* Líneas decorativas arriba y abajo del texto */
+.menu-btn span::before,
+.menu-btn span::after {
+  content: "";
+  position: absolute;
+  left: 12%;
+  right: 12%;
+  height: 3px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #ff8a00, #ff4ea6, #00d4ff);
+  background-size: 200% 100%;
+  animation: lineGlow 4s linear infinite;
+  z-index: 3;
+}
+
+.menu-btn span::before { top: calc(50% - 36px); } /* línea superior */
+.menu-btn span::after  { top: calc(50% + 24px); } /* línea inferior */
+
+/* ===== Animaciones ===== */
+@keyframes borderFlow {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes sheenMove {
+  0%   { transform: translateX(-100%) rotate(25deg); }
+  100% { transform: translateX(100%) rotate(25deg); }
+}
+
+@keyframes textFlow {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes lineGlow {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 15px;
+  justify-items: center;
+  margin: 20px auto;
+  max-width: 1000px;
+}
+
+/* === Borde degradado (wrapper) === */
+.gif-card-wrapper {
+  display: inline-block;
+  border-radius: 12px;
+  padding: 6px;
+  background: linear-gradient(135deg, #601070, #406E85);;
+}
+
+/* Contenedor de todas las tarjetas */
+.gallery {
+  display: flex;
+  flex-wrap: wrap;         /* permite que los cuadros salten a nuevas filas */
+  justify-content: center; /* centra las tarjetas */
+  gap: 30px;               /* espacio entre tarjetas */
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Cada tarjeta */
+.card {
+  position: relative;
+  width: 200px;   /* ancho fijo */
+  height: 200px;  /* alto fijo */
+  border-radius: 14px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.25));
+  overflow: hidden;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+  border: 10px solid rgba(5, 32, 46, 100);
+  box-shadow: 0 0 10px rgba(0,200,255,0.3);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Imagen siempre arriba */
+.card img {
+  width: 100%;
+  height: 200px;           /* controla el alto de la parte superior */
+  object-fit: cover;       /* recorta sin deformar */
+  display: block;
+  background: linear-gradient(180deg, #222, #111);
+}
+
+/* Pie de tarjeta (pegado a la imagen, sin hueco extra) */
+.card-footer {
+  text-align: center;
+  padding: 6px 8px;        /* menos padding para hacerlo compacto */
+  font-weight: 600;
+  font-size: 13px;
+  color: #dcdcdc;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.18));
+  border-top: 1px solid rgba(255,255,255,0.05);
+  flex-shrink: 0;
+}
+
+/* Número flotante */
+.card-number {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(0,0,0,0.45));
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-weight: 700;
+  color: #fff;
+  font-size: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.45);
+  border: 1px solid rgba(255,255,255,0.03);
+}
+
+/* === small-btn === */
+.small-btn {
+  background: linear-gradient(90deg, #6a11cb, #ff3cac);
+  border: none;
+  border-radius: 50px;
+  padding: 12px 30px;
+  font-size: 15px;
+  font-weight: bold;
+  color: black;
+  cursor: pointer;
+  text-align: center;
+  margin: 10px auto;
+  display: block;
+  width: fit-content;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+  transition: all 0.3s ease;
+
+  /* 🚫 quitar subrayado */
+  text-decoration: none;
+}
+
+.small-btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.6);
+  filter: brightness(1.1);
+
+  /* por si acaso también en hover */
+  text-decoration: none;
+}
+
+
+
+
+/* === rectangle-box con efecto holográfico === */
+.rectangle-box {
+  width: 400px;
+  height: 100px;
+  margin: 20px auto;
+  border-radius: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+
+  background: rgba(15, 15, 20, 0.85);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  box-shadow: 0px 0px 25px rgba(0, 200, 255, 0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+/* Borde animado holográfico */
+.rectangle-box::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  padding: 2px;
+  background: linear-gradient(
+    135deg,
+    #ff00ff,
+    #00f0ff,
+    #00ff88,
+    #ffcc00,
+    #ff0066,
+    #ff00ff
+  );
+  background-size: 400% 400%;
+  animation: borderFlow 6s linear infinite;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box,
+                 linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Texto holográfico centrado */
+.rectangle-box span {
+  font-weight: 900;
+  font-size: 26px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background: linear-gradient(
+    90deg,
+    #ff00ff,
+    #00f0ff,
+    #00ff88,
+    #ffcc00,
+    #ff0066,
+    #ff00ff
+  );
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textFlow 5s ease infinite;
+  text-shadow: 0 0 12px rgba(255,255,255,0.25);
+
+  /* 🚫 estas dos líneas son las que eliminan selección/click */
+  user-select: none;
+  pointer-events: none;
+}
+
+/* === Animaciones para bordes y texto === */
+@keyframes borderFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes textFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* --- MODAL --- */
+.modal {
+  display: none; /* oculto por defecto */
+  position: fixed;
+  z-index: 2000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.85);
+  backdrop-filter: blur(4px);
+}
+
+/* Contenedor del contenido */
+.modal-content {
+  margin: 5% auto;
+  display: block;
+  width: 728px;
+  height: 486px;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 0 22px rgba(0,200,255,0.45);
+  border: 3px solid rgba(0,200,255,0.6);
+}

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Listado de Precios</title>
+  <link rel="stylesheet" href="precios.css">
+
+  <style>
+    #bg-wrap{position:fixed;inset:0;z-index:-1;pointer-events:none;}
+    #bg-canvas{width:100%;height:100%;display:block;}
+    .bg-content{position:relative;z-index:1;}
+  </style>
+
+  <link rel="stylesheet" href="../css/modern-dark.css" />
+  <link rel="stylesheet" href="../css/modern-dark-pro.css" />
+  <link rel="stylesheet" href="../css/dark-ultimate.css" />
+  <link rel="stylesheet" href="../css/dark-ultimate-v2.css" />
+  <link rel="stylesheet" href="../css/portfolio-minimal.css" />
+</head>
+<body>
+  <canvas id="fondo-abstracto" aria-hidden="true"></canvas>
+
+<div id="bg-wrap"><canvas id="bg-canvas"></canvas></div>
+<div class="bg-content">
+
+  <div class="contenedor">
+    <!-- 🔹 Rectángulo holográfico en vez del título azul -->
+    <div class="rectangle-box"><span>LISTADO DE PRECIOS</span></div>
+
+    <div class="precios-grid">
+      <div class="card">
+        <h3>🎞 𝗚𝗜𝗙𝗦</h3>
+        <ul>
+          <li>𝗚𝗜𝗙 𝟰𝗗 <span class="precio">𝟲𝟬𝟬 𝘅𝗮𝘁𝘀</span></li>
+          <li>𝗚𝗜𝗙 𝗣𝗔𝗥𝗣𝗔𝗗𝗘𝗢𝗦 <span class="precio">𝟭𝟱𝟬 𝘅𝗮𝘁𝘀</span></li>
+          <li>𝗚𝗜𝗙 𝗣𝗔𝗥𝗣𝗔𝗗𝗘𝗢𝗦 𝗖𝗢𝗡 𝗘𝗙𝗘𝗖𝗧𝗢𝗦 𝗘𝗦𝗣𝗘𝗖𝗜𝗔𝗟𝗘𝗦 <span class="precio">𝟯𝟬𝟬 𝘅𝗮𝘁𝘀</span></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>🖼 𝗙𝗢𝗡𝗗𝗢𝗦</h3>
+        <ul>
+          <li>𝗙𝗢𝗡𝗗𝗢 𝗕𝗔𝗡𝗡𝗘𝗥 𝗡𝗢𝗥𝗠𝗔𝗟 <span class="precio">𝟲𝟬𝟬 𝘅𝗮𝘁𝘀</span></li>
+          <li>𝗙𝗢𝗡𝗗𝗢 𝗣𝗖𝗕𝗔𝗖𝗞 𝗡𝗢𝗥𝗠𝗔𝗟 <span class="precio">𝟲𝟬𝟬 𝘅𝗮𝘁𝘀</span></li>
+          <li>𝗙𝗢𝗡𝗗𝗢 𝗣𝗖𝗕𝗔𝗖𝗞 𝗚𝗜𝗙 <span class="precio">𝟴𝟬𝟬 𝘅𝗮𝘁𝘀</span></li>
+          <li>𝗙𝗢𝗡𝗗𝗢 𝗣𝗦𝗧𝗬𝗟𝗘 𝗡𝗢𝗥𝗠𝗔𝗟 <span class="precio">𝟱𝟬𝟬 𝘅𝗮𝘁𝘀</span></li>
+          <li>𝗙𝗢𝗡𝗗𝗢 𝗣𝗦𝗧𝗬𝗟𝗘 𝗚𝗜𝗙 <span class="precio">𝟳𝟬𝟬 𝘅𝗮𝘁𝘀</span></li>
+          <li>𝗙𝗢𝗡𝗗𝗢 𝗖𝗢𝗠𝗣𝗟𝗘𝗧𝗢𝗦 𝗣𝗔𝗥𝗔 𝗦𝗔𝗟𝗔 ( 𝗘𝗫𝗧. + 𝗜𝗡𝗧.) <span class="precio">𝟭𝟰𝟬𝟬 𝘅𝗮𝘁𝘀</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="separador"></div>
+
+    <div class="precios-grid">
+      <div class="card">
+        <h3>🔥 𝗣𝗥𝗢𝗠𝗢𝗖𝗜𝗢𝗡𝗘𝗦</h3>
+        <ul>
+          <li>𝟭 𝗣𝗖𝗕𝗔𝗖𝗞 𝗡𝗢𝗥𝗠𝗔𝗟 + 𝟭 𝗣𝗦𝗧𝗬 𝗡𝗢𝗥𝗠𝗔𝗟 + 𝟭 𝗚𝗜𝗙 𝟰𝗗 𝟬 𝟯 𝗣𝗔𝗥𝗣𝗔𝗗𝗘𝗢𝗦  <span class="precio">𝟭𝟬𝟬𝟬 𝘅𝗮𝘁𝘀</span></li>
+          <li>𝟭 𝗣𝗖𝗕𝗔𝗖𝗞 𝗚𝗜𝗙 + 𝟭 𝗣𝗦𝗧𝗬 𝗚𝗜𝗙 + 𝟭 𝗚𝗜𝗙 𝟰𝗗 𝟬 𝟰 𝗣𝗔𝗥𝗣𝗔𝗗𝗘𝗢𝗦 <span class="precio">𝟭𝟯𝟬𝟬 𝘅𝗮𝘁𝘀</span></li>
+          <li>𝟮 𝗣𝗖𝗕𝗔𝗖𝗞 𝗚𝗜𝗙 + 𝟮 𝗣𝗦𝗧𝗬 𝗚𝗜𝗙 + 𝟮 𝗚𝗜𝗙 𝟰𝗗 𝟬 𝟲 𝗣𝗔𝗥𝗣𝗔𝗗𝗘𝗢𝗦 <span class="precio">𝟭𝟰𝟬𝟬 𝘅𝗮𝘁𝘀</span></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>🏠 𝗣𝗥𝗢𝗠𝗢𝗖𝗜𝗢𝗡𝗘𝗦 𝗣𝗔𝗥𝗔 𝗦𝗔𝗟𝗔𝗦</h3>
+        <ul>
+          <li>𝟮 𝗣𝗔𝗖𝗞 𝗖𝗢𝗠𝗣𝗟𝗘𝗧𝗢𝗦 𝗗𝗘 𝗙𝗢𝗡𝗗𝗢𝗦 (𝟮 𝗘𝗫𝗧𝗘𝗥𝗜𝗢𝗥 + 𝟮 𝗜𝗡𝗧𝗘𝗥𝗜𝗢𝗥) <span class="precio">𝟭𝟲𝟬𝟬 𝘅𝗮𝘁𝘀</span></li>
+          <li>𝟰 𝗣𝗔𝗖𝗞 𝗖𝗢𝗠𝗣𝗟𝗘𝗧𝗢𝗦 𝗗𝗘 𝗙𝗢𝗡𝗗𝗢𝗦 (𝟰 𝗘𝗫𝗧𝗘𝗥𝗜𝗢𝗥 + 𝟰 𝗜𝗡𝗧𝗘𝗥𝗜𝗢𝗥) <span class="precio">𝟮𝟯𝟬𝟬 𝘅𝗮𝘁𝘀</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <a href="../index.html" class="volver">← MENÚ PRINCIPAL</a>
+
+</div>
+
+<script type="module" src="../../assets/fondo-loader.js"></script>
+<script src="../../assets/modules/fondo-abstracto.js" defer></script>
+<script src="../js/modern-dark.js" defer></script>
+<script src="../../assets/modules/fondo-abstracto.js" defer></script>
+<script src="../js/dark-pro.js" defer></script>
+<script src="../../assets/modules/fondo-abstracto.js" defer></script>
+<script src="../js/dark-ultimate.js" defer></script>
+</body>
+</html>
