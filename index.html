@@ -38,9 +38,11 @@
     .header .profile {
       margin-left: 20px;
     }
+
   </style>
 </head>
 <body>
+  
   <canvas id="fondo-abstracto" aria-hidden="true"></canvas>
   <div class="container">
     <header class="header fade-in">
@@ -63,10 +65,17 @@
       <div class="hero-left">
         <h1 class="hero-title">Bienvienido a mi espacio de trabajo <span class="accent">"Graphic Designer"</span></h1>
         <p class="hero-desc">Explora mi galería de diseños exclusivos: fondos, GIFs y packs creados para destacar.</p>
-        <div class="hero-cta">
-          <a class="btn-primary" href="https://xat.com/fondos">Fondos</a>
-          <a class="btn-ghost" href="precios promociones/precios.html">Ver precios</a>
-        </div>
+<div class="hero-cta">
+  <a class="btn-primary" href="https://xat.com/fondos">fondos</a>
+  <a class="btn-ghost" href="precios promociones/precios.html">Ver precios</a>
+
+  <div class="married-wrapper">
+    <div class="married-box" id="openMarried">
+      <i class="fas fa-heart"></i>
+      <span>My Married</span>
+    </div>
+  </div>
+</div>
 
 
 
@@ -80,7 +89,7 @@
     <a href="https://instagram.com/TU_USUARIO" target="_blank" class="social-btn ig">
       <i class="fab fa-instagram"></i>
     </a>
-    <a href="https://wa.me/5493821452164" target="_blank" class="social-btn wa">
+    <a href="https://wa.me/5493821497105" target="_blank" class="social-btn wa">
       <i class="fab fa-whatsapp"></i>
     </a>
   </div>
@@ -140,6 +149,24 @@
 <!-- Plugin de efecto agua -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.ripples/0.5.3/jquery.ripples.min.js"></script>
+
+<!-- 💖 Married Modal -->
+<div class="married-modal" id="marriedModal">
+  <div class="married-card">
+    <button class="close-married" id="closeMarried">&times;</button>
+
+    <img src="https://xatimg.com/image/GMshmqiYLAuC.png" class="married-avatar">
+
+    <h2>day</h2>
+    <p class="married-id">ID: 116447265</p>
+
+    <p class="married-text">Mi amor te quiero.</p>
+
+    <a href="https://xat.me/iDaii" target="_blank" class="xat-btn">
+      XAT.ME
+    </a>
+  </div>
+</div>
 
 <script>
 jQuery(document).ready(function($) {
@@ -297,6 +324,141 @@ jQuery(document).ready(function($) {
   background:rgba(255,255,255,0.08);
   backdrop-filter: blur(6px); color:#fff;
 }
+
+/* ❤️ Married Button */
+.married-box {
+  width: 90px;        /* antes 110 */
+  height: 90px;       /* antes 110 */
+  border-radius: 22px;
+  background: rgba(255, 0, 70, 0.12);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 0, 70, 0.35);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.35s ease;
+  box-shadow: 
+    0 0 16px rgba(255, 0, 70, 0.35),
+    inset 0 0 12px rgba(255, 45, 85, 0.25);
+}
+
+.hero-cta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.married-box i {
+  font-size: 26px;   /* antes 34 */
+  color: #ff2d55;
+  animation: heartBeat 1.6s infinite;
+}
+
+.married-box span {
+  margin-top: 4px;
+  font-size: 12px;
+  color: #fff;
+  opacity: 0.85;
+}
+
+
+.married-box:hover {
+  transform: scale(1.08);
+  box-shadow: 
+    0 0 28px rgba(255, 0, 70, 0.55),
+    inset 0 0 18px rgba(255, 45, 85, 0.35);
+}
+
+
+@keyframes heartBeat {
+  0%,100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+/* 💖 Modal */
+.married-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(10px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.married-card {
+  width: 380px;
+  padding: 60px;
+  border-radius: 25px;
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.2);
+  text-align: center;
+  box-shadow: 0 0 40px rgba(255,0,70,0.5);
+  animation: fadeUp 0.6s ease;
+}
+
+@keyframes fadeUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.married-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #ff2d55;
+  margin-bottom: 15px;
+}
+
+.married-card h2 {
+  color: #fff;
+  margin-bottom: 4px;
+}
+
+.married-id {
+  font-size: 13px;
+  color: #ff9bb5;
+  margin-bottom: 15px;
+}
+
+.married-text {
+  font-size: 14px;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+.xat-btn {
+  display: inline-block;
+  padding: 10px 25px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #ff2d55, #ff5f8a);
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.xat-btn:hover {
+  box-shadow: 0 0 20px #ff2d55;
+}
+
+.close-married {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+
 </style>
 
 <script>
@@ -455,10 +617,23 @@ loadTrack(currentTrack);
 // deja el botón en modo "play"
 playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
 
+
+const openMarried = document.getElementById("openMarried");
+const marriedModal = document.getElementById("marriedModal");
+const closeMarried = document.getElementById("closeMarried");
+
+openMarried.onclick = () => marriedModal.style.display = "flex";
+closeMarried.onclick = () => marriedModal.style.display = "none";
+
+marriedModal.onclick = e => {
+  if (e.target === marriedModal) marriedModal.style.display = "none";
+};
+</script>
+
+
 </script>
 
   <script src="../assets/modules/fondo-abstracto.js" defer></script>
   <script src="js/portfolio-minimal.js" defer></script>
 </body>
 </html>
-
